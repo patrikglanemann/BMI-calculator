@@ -31,7 +31,7 @@ h1 {
   flex-direction: column;
 }
 
-@media screen and (max-width: 530px) {
+@media screen and (max-width: 536px) {
   .bmiForm {
     flex-direction: column;
     justify-content: center;

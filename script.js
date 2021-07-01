@@ -1,23 +1,23 @@
 const calculated = document.querySelector("h2");
 const bmiForm = document.querySelector(".bmiForm");
 
-bmiForm.addEventListener("click", () => {
+bmiForm.btn__calc.addEventListener("click", () => {
   const height = bmiForm.height.value;
   const weight = bmiForm.weight.value;
   const bmi = (weight / height ** 2) * 10000;
-  if (bmi >= 30 || bmi <= 18.5) {
-    calculated.textContent = `Your BMI is ${bmi}`;
+
+  calculated.textContent = `Your BMI is ${bmi.toFixed(2)}`;
+
+  if (bmi < 18.5 || bmi >= 30) {
     console.log(calculated.textContent);
     calculated.style.color = "red";
-  } else if (bmi < 30 && bmi > 25) {
-    calculated.textContent = `Your BMI is ${bmi}`;
-    console.log(calculated.textContent);
-    calculated.style.color = "orange";
-  } //bmi >= 25 && bmi > 18.5
-  else if (bmi >= 25 && bmi > 18.5) {
-    calculated.textContent = `Your BMI is ${bmi}`;
+  } else if (bmi >= 18.5 && bmi < 25) {
     console.log(calculated.textContent);
     calculated.style.color = "green";
+  } else {
+    //(bmi >= 25 && bmi < 30)
+    console.log(calculated.textContent);
+    calculated.style.color = "orange";
   }
 
   console.log(`${height}, ${weight}, ${bmi}`);
