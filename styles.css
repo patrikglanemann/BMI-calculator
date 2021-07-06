@@ -21,17 +21,12 @@ h1 {
   gap: 2rem;
 }
 
-.height__wrapper {
+.div__wrapper {
   display: flex;
   flex-direction: column;
 }
 
-.weight__wrapper {
-  display: flex;
-  flex-direction: column;
-}
-
-@media screen and (max-width: 536px) {
+@media screen and (max-width: 756px) {
   .bmiForm {
     flex-direction: column;
     justify-content: center;
