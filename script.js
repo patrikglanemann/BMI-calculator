@@ -1,5 +1,6 @@
 const bmiForm = document.querySelector(".bmiForm");
 const bmiList = document.querySelector(".bmi-list");
+const btnReset = document.querySelector(".btn-reset");
 
 bmiForm.btn__calc.addEventListener("click", () => {
   const height = bmiForm.height.value;
@@ -51,4 +52,8 @@ bmiForm.btn__calc.addEventListener("click", () => {
   bmiListElement.append(buttonField);
 
   bmiList.append(bmiListElement);
+
+  btnReset.addEventListener("click", () => {
+    bmiListElement.remove();
+  });
 });
