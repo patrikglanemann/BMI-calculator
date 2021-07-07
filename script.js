@@ -1,60 +1,113 @@
-const calculated = document.querySelector("h2");
 const bmiForm = document.querySelector(".bmiForm");
 const bmiList = document.querySelector(".bmi-list");
 
-//const bmiArray = [{ name: "TomTest", bmi: "25", text: "nice" }];
-
 bmiForm.btn__calc.addEventListener("click", () => {
-  const name = bmiForm.name.value;
   const height = bmiForm.height.value;
   const weight = bmiForm.weight.value;
   const bmi = (weight / height ** 2) * 10000;
 
-  const bmiObject = {
-    name,
-    bmi,
-    text: "Miau",
-  };
+  const bmiListElement = document.createElement("li");
+  bmiListElement.classList.add("bmi-list__item");
 
-  const bmiListNew = document.createElement("li");
-  bmiListNew.textContent = `${bmiObject.name} ${bmiObject.bmi.toFixed(2)} ${
-    bmiObject.text
-  }`;
-  //console.log(bmiElementName);
-  bmiList.append(bmiListNew);
+  const nameField = document.createElement("p");
+  nameField.textContent = bmiForm.name.value;
 
-  calculated.textContent = `Your BMI is ${bmi.toFixed(2)}`;
+  const bmiField = document.createElement("p");
+  bmiField.textContent = bmi.toFixed(2);
 
-  if (bmi < 18.5 || bmi >= 30) {
-    console.log(calculated.textContent);
-    calculated.style.color = "red";
+  const descriptionField = document.createElement("p");
+  //descriptionField.textContent = bmiCheck();
+  if (bmi < 18.5) {
+    descriptionField.textContent = "under-weight";
+    descriptionField.style.color = "red";
   } else if (bmi >= 18.5 && bmi < 25) {
-    console.log(calculated.textContent);
-    calculated.style.color = "green";
+    descriptionField.textContent = "normal";
+    descriptionField.style.color = "green";
+  } else if (bmi >= 25 && bmi < 30) {
+    descriptionField.textContent = "over-weight";
+    descriptionField.style.color = "orange";
   } else {
-    //(bmi >= 25 && bmi < 30)
-    console.log(calculated.textContent);
-    calculated.style.color = "orange";
+    //bmi >= 30
+    descriptionField.textContent = "obese";
+    descriptionField.style.color = "red";
   }
 
-  console.log(`${height}, ${weight}, ${bmi}`);
+  const buttonField = document.createElement("button");
+  buttonField.classList.add("btn-remove");
+  buttonField.textContent = "Delete";
+  buttonField.addEventListener("click", () => {
+    bmiListElement.remove();
+  });
+
+  bmiListElement.append(nameField);
+  bmiListElement.append(bmiField);
+  bmiListElement.append(descriptionField);
+  bmiListElement.append(buttonField);
+
+  bmiList.append(bmiListElement);
 });
 
-// below 18.5 = red
-// between 18.5 and 25 (not inclusive) = green
-// between 25 and 30 (not inclusive) = orange
-// from 30 on = red
+// This data would come from somewhere else (database, localStorage, or an external API)
+const data = [
+  {
+    name: "Strawberrys",
+    isBought: true,
+  },
+  {
+    name: "Eggs",
+    isBought: false,
+  },
+  {
+    name: "Bananas",
+    isBought: false,
+  },
+];
 
-/*
-for (let i = 0; i < bmiObject.length; i++) {
-  const bmiObjElement = bmiObject[i];
-  const bmiElementName = bmiObjElement.name;
-  const bmiElementValue = bmiObjElement.bmi;
-  const bmiElementtext = bmiObjElement.text;
+const form = document.querySelector("form");
+const olElement = document.querySelector("ol");
 
-  const bmiListNew = document.createElement("li");
-  bmiListNew.textContent = `${bmiElementName} ${bmiElementValue} ${bmiElementtext}`;
-  console.log(bmiElementName);
-  bmiList.append(bmiListNew);
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const itemName = form.item.value;
+  const liElement = createShoppingListItem(itemName);
+  // HTMLElement.append to add an element as a last child of the element
+  olElement.append(liElement);
+
+  form.reset();
+});
+
+function createShoppingListItem(name, isBought = false) {
+  // create an HTMLElement dynamically
+  const liElement = createElement("li");
+  liElement.textContent = name;
+  liElement.classList.add("shopping-list__item");
+  if (isBought) {
+    liElement.classList.add("shopping-list__item--completed");
+  }
+  // Delete Button
+  const deleteButton = createElement("button");
+  deleteButton.textContent = "X";
+  deleteButton.classList.add("btn", "btn--delete");
+  deleteButton.addEventListener("click", () => {
+    // HTMLElement.remove() to remove elements from the DOM
+    liElement.remove();
+  });
+
+  // Complete Button
+  const completeButton = createElement("button");
+  completeButton.textContent = "Done";
+  completeButton.classList.add("btn", "btn--complete");
+  completeButton.addEventListener("click", () => {
+    liElement.classList.toggle("shopping-list__item--completed");
+  });
+
+  // Compose the li appending the buttons to it
+  liElement.append(deleteButton);
+  liElement.append(completeButton);
+
+  return liElement;
 }
-*/
+
+function createElement(type, textContent, classes) {
+  return document.createElement(type);
+}

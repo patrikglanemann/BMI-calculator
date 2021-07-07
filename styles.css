@@ -26,6 +26,18 @@ h1 {
   flex-direction: column;
 }
 
+.bmi-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  list-style: none;
+}
+
+.bmi-list__item {
+  display: flex;
+  gap: 3em;
+}
+
 @media screen and (max-width: 756px) {
   .bmiForm {
     flex-direction: column;
