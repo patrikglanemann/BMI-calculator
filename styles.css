@@ -21,17 +21,24 @@ h1 {
   gap: 2rem;
 }
 
-.height__wrapper {
+.div__wrapper {
   display: flex;
   flex-direction: column;
 }
 
-.weight__wrapper {
+.bmi-list {
   display: flex;
   flex-direction: column;
+  gap: 5px;
+  list-style: none;
 }
 
-@media screen and (max-width: 536px) {
+.bmi-list__item {
+  display: flex;
+  gap: 3em;
+}
+
+@media screen and (max-width: 756px) {
   .bmiForm {
     flex-direction: column;
     justify-content: center;

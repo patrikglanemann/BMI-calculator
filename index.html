@@ -11,13 +11,17 @@
     <header><h1>BMI-Calculator</h1></header>
     <main>
       <form class="bmiForm">
-        <div class="height__wrapper">
+        <div class="div__wrapper">
+          <label for="name" class="label label__name"> What's your Name?</label>
+          <input type="text" name="name" id="name" />
+        </div>
+        <div class="div__wrapper">
           <label for="height" class="label label__height">
             Your height in cm</label
           >
           <input type="number" min="1" name="height" id="height" />
         </div>
-        <div class="weight__wrapper">
+        <div class="div__wrapper">
           <label for="weight" class="label label__weight"
             >Your weight in kg</label
           >
@@ -32,7 +36,8 @@
           />
         </div>
       </form>
-      <h2>Your BMI is</h2>
+      <ol class="bmi-list"></ol>
+      <button class="btn-reset">Reset</button>
     </main>
     <script src="script.js"></script>
   </body>
